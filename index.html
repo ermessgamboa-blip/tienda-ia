@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Wear | Tienda Oficial</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .product-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        .hero-section {
+            background: linear-gradient(135deg, #0d6efd, #0dcaf0);
+            color: white;
+            padding: 4rem 0;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            margin-bottom: 3rem;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="#">🤖 AI Wear</a>
+            <button class="btn btn-outline-secondary btn-sm" id="btnModo">🌙 Modo Oscuro</button>
+        </div>
+    </nav>
+
+    <header class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Viste el Futuro</h1>
+            <p class="lead">Ropa exclusiva para desarrolladores y entusiastas de la IA.</p>
+        </div>
+    </header>
+
+    <div class="container mb-5">
+        <div class="row g-4 justify-content-center">
+            
+            <div class="col-md-5">
+                <div class="card product-card h-100 shadow-sm">
+                    <div class="card-body text-center mt-3">
+                        <h2 class="display-1">🌌</h2>
+                        <h3 class="card-title mt-3">Gemini Advanced</h3>
+                        <p class="card-text text-muted">Camiseta negra premium. Algodón 100%.</p>
+                        <h4 class="fw-bold mb-4">250 MAD</h4>
+                        <a href="https://wa.me/212773864709?text=Hola%20Ernesto,%20quiero%20comprar%20la%20camiseta%20Gemini%20Advanced" class="btn btn-success w-100 py-2 fw-bold">
+                            📲 Comprar por WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="card product-card h-100 shadow-sm">
+                    <div class="card-body text-center mt-3">
+                        <h2 class="display-1">⚡</h2>
+                        <h3 class="card-title mt-3">Google AI Studio</h3>
+                        <p class="card-text text-muted">Sudadera blanca técnica. Ideal para programar.</p>
+                        <h4 class="fw-bold mb-4">350 MAD</h4>
+                        <a href="https://wa.me/212773864709?text=Hola%20Ernesto,%20quiero%20comprar%20la%20sudadera%20Google%20AI%20Studio" class="btn btn-success w-100 py-2 fw-bold">
+                            📲 Comprar por WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const btnModo = document.getElementById('btnModo');
+        const htmlElement = document.documentElement;
+
+        btnModo.addEventListener('click', () => {
+            if (htmlElement.getAttribute('data-bs-theme') === 'light') {
+                htmlElement.setAttribute('data-bs-theme', 'dark');
+                btnModo.textContent = '☀️ Modo Claro';
+            } else {
+                htmlElement.setAttribute('data-bs-theme', 'light');
+                btnModo.textContent = '🌙 Modo Oscuro';
+            }
+        });
+    </script>
+</body>
+</html>
