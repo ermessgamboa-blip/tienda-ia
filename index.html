@@ -6,17 +6,16 @@
     <title>Google AI Studio | Tánger</title>
     <style>
         :root {
-            --glass-bg: rgba(255, 255, 255, 0.07);
-            --glass-border: rgba(255, 255, 255, 0.15);
-            --glow: 0 15px 35px rgba(197, 160, 115, 0.15);
+            --glass-bg: rgba(255, 255, 255, 0.06);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --glow: 0 15px 35px rgba(197, 160, 115, 0.1);
         }
         
         body {
             margin: 0;
             padding: 20px;
             font-family: 'Segoe UI', system-ui, sans-serif;
-            /* Fondo degradado sofisticado (Estilo Google AI) */
-            background: linear-gradient(135deg, #141110 0%, #231c1a 50%, #161e22 100%);
+            background: linear-gradient(135deg, #120f0e 0%, #1f1917 50%, #13191c 100%);
             color: #f5f5f5;
             min-height: 100vh;
             display: flex;
@@ -25,183 +24,192 @@
             box-sizing: border-box;
         }
 
-        .header {
-            text-align: center;
-            margin: 30px 0 20px 0;
-        }
-
+        .header { text-align: center; margin: 20px 0; }
         .header h1 {
-            font-weight: 300;
-            font-size: 2.4rem;
-            margin: 0;
-            letter-spacing: -0.5px;
+            font-weight: 300; font-size: 2.4rem; margin: 0; letter-spacing: -0.5px;
             background: linear-gradient(to right, #ffffff, #e0d5c1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .header p { color: #c5a073; font-size: 1.05rem; margin: 8px 0 0 0; }
+
+        /* BUSCADOR INTERACTIVO */
+        .search-container {
+            width: 100%; max-width: 360px; margin-bottom: 20px; position: relative;
+        }
+        .search-bar {
+            width: 100%; padding: 14px 20px; border-radius: 50px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--glass-border);
+            color: white; font-size: 0.95rem; box-sizing: border-box;
+            outline: none; transition: all 0.3s ease;
+        }
+        .search-bar:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #c5a073; box-shadow: 0 0 15px rgba(197,160,115,0.3);
         }
 
-        .header p {
-            color: #c5a073; /* Tono madera premium */
-            font-size: 1.05rem;
-            margin: 8px 0 0 0;
-        }
-
-        /* Panel de Cristal Flotante (Glassmorphism) */
+        /* PANEL CENTRAL */
         .glass-panel {
             background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 28px;
-            padding: 30px;
-            width: 100%;
-            max-width: 360px;
-            text-align: center;
-            box-shadow: var(--glow);
-            box-sizing: border-box;
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border); border-radius: 28px;
+            padding: 25px; width: 100%; max-width: 360px; text-align: center;
+            box-shadow: var(--glow); box-sizing: border-box;
         }
-
-        .glass-panel h2 {
-            font-weight: 400;
-            font-size: 1.6rem;
-            margin: 0 0 10px 0;
-        }
-
-        .glass-panel .desc {
-            color: #b0a89f;
-            font-size: 0.95rem;
-            margin: 0 0 20px 0;
-            line-height: 1.4;
-        }
+        .glass-panel h2 { font-weight: 400; font-size: 1.5rem; margin: 0 0 10px 0; }
+        .glass-panel .desc { color: #b0a89f; font-size: 0.9rem; margin: 0 0 15px 0; }
         
-        .btn-experience {
-            background: rgba(255, 255, 255, 0.05);
-            color: white;
+        /* BOTONES */
+        .btn-action {
+            background: rgba(255, 255, 255, 0.05); color: white;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 14px 28px;
-            border-radius: 50px;
-            text-decoration: none;
-            display: inline-block;
-            font-weight: 500;
-            font-size: 0.95rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: all 0.2s ease;
+            padding: 12px 24px; border-radius: 50px; text-decoration: none;
+            display: inline-block; font-weight: 500; font-size: 0.9rem;
+            margin: 5px; cursor: pointer; transition: all 0.2s ease;
         }
-
-        .btn-experience:hover {
-            background: #ffffff;
-            color: #141110;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(255,255,255,0.4);
+        .btn-action:hover {
+            background: #ffffff; color: #141110; transform: translateY(-2px);
         }
+        .btn-active { background: #c5a073; color: #141110; border-color: #c5a073; }
 
-        /* Bloques de información flotantes */
+        /* BADGES */
         .floating-badges {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin: 20px 0;
-            width: 100%;
-            max-width: 360px;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+            margin: 20px 0; width: 100%; max-width: 360px;
         }
-
         .badge {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            padding: 12px;
-            border-radius: 16px;
-            font-size: 0.85rem;
-            text-align: center;
-            color: #e0d5c1;
+            background: var(--glass-bg); border: 1px solid var(--glass-border);
+            padding: 12px; border-radius: 16px; font-size: 0.85rem; text-align: center; color: #e0d5c1;
+            cursor: pointer; transition: transform 0.2s;
         }
-        
-        .badge.full-width {
-            grid-column: span 2;
-        }
+        .badge:hover { transform: scale(1.03); background: rgba(255,255,255,0.1); }
+        .badge.full-width { grid-column: span 2; }
 
-        /* Consola Inferior */
-        .terminal-container {
-            margin-top: auto;
-            width: 100%;
-            max-width: 360px;
-            padding-bottom: 10px;
-        }
-
+        /* CONSOLA */
+        .terminal-container { width: 100%; max-width: 360px; margin-top: auto; }
         .terminal-title {
-            text-align: center;
-            color: #c5a073;
-            font-family: monospace;
-            font-size: 0.85rem;
-            letter-spacing: 3px;
-            margin-bottom: 8px;
-            text-transform: uppercase;
+            text-align: center; color: #c5a073; font-family: monospace;
+            font-size: 0.8rem; letter-spacing: 3px; margin-bottom: 8px;
         }
-
         .terminal {
-            background: rgba(13, 16, 19, 0.9);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 18px;
-            font-family: monospace;
-            color: #64b5f6; /* Azul IA */
-            font-size: 0.85rem;
-            line-height: 1.5;
-            text-align: left;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+            background: rgba(13, 16, 19, 0.95); border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px; padding: 15px; font-family: monospace;
+            color: #64b5f6; font-size: 0.8rem; line-height: 1.5; min-height: 100px;
+            text-align: left; box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+            overflow-y: auto; max-height: 150px;
         }
-        
         .terminal .green { color: #81c784; }
         .terminal .white { color: #ffffff; }
+        .terminal .yellow { color: #ffd54f; }
     </style>
 </head>
 <body>
 
     <div class="header">
         <h1>Google AI Studio</h1>
-        <p>Soberanía Tecnológica Redefinida, desde Tánger 🌴</p>
+        <p>Soberanía Tecnológica Redefinida 🌴</p>
+    </div>
+
+    <div class="search-container">
+        <input type="text" id="searchBar" class="search-bar" placeholder="Busca tu soberanía tecnológica...">
     </div>
 
     <div class="glass-panel">
-        <h2>Gemini Advanced</h2>
-        <p class="desc">La inteligencia que se adapta a tu ritmo en Tánger.</p>
+        <h2 id="panelTitle">Gemini Advanced</h2>
+        <p class="desc" id="panelDesc">La inteligencia que se adapta a tu ritmo en Tánger.</p>
         
-        <div style="height: 120px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+        <div style="height: 100px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center;">
             <svg viewBox="0 0 200 100" width="100%" height="100%">
                 <defs>
                     <linearGradient id="waveGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                         <stop offset="0%" stop-color="#c5a073" stop-opacity="0.8"/>
-                        <stop offset="60%" stop-color="#e0a96d" stop-opacity="0.9"/>
                         <stop offset="100%" stop-color="#64b5f6" stop-opacity="0.6"/>
                     </linearGradient>
                 </defs>
                 <path d="M0,50 Q35,15 75,50 T150,45 T200,35" fill="none" stroke="url(#waveGrad)" stroke-width="2.5" />
-                <path d="M0,60 Q40,85 85,45 T160,55 T200,45" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1" />
                 <path d="M0,40 Q45,25 80,60 T145,40 T200,55" fill="none" stroke="url(#waveGrad)" stroke-width="1" stroke-dasharray="4 3" />
                 <circle cx="75" cy="50" r="3.5" fill="#64b5f6" />
                 <circle cx="150" cy="45" r="2.5" fill="#c5a073" />
-                <circle cx="85" cy="45" r="2" fill="#fff" />
             </svg>
         </div>
 
-        <a href="https://wa.me/212773864709" class="btn-experience">Comenzar experiencia</a>
+        <button class="btn-action btn-active" onclick="changeApp('gemini')">Info</button>
+        <button class="btn-action" id="btnHack" onclick="runDiagnostics()">Diagnóstico</button>
+        <a href="https://wa.me/212773864709" class="btn-action" style="background:#25d366; color:black; border:none;">WhatsApp</a>
     </div>
 
     <div class="floating-badges">
-        <div class="badge">🌍 Nodos Activos:<br><b>24 (África)</b></div>
-        <div class="badge">✅ Estado Ético:<br><b>Soberano</b></div>
-        <div class="badge full-width">🧠 Última Actualización: <b>Gemini Pro</b></div>
+        <div class="badge" onclick="logTerminal('Nodos verificados en África: 24 activos mediante túneles seguros.')">🌍 Nodos Activos<br><b>24 (África)</b></div>
+        <div class="badge" onclick="logTerminal('Criterio ético: Framework de código soberano y transparente activado.')">✅ Estado Ético<br><b>Soberano</b></div>
+        <div class="badge full-width" onclick="logTerminal('Core Engine: Gemini Pro actualizando registros a v10.0...')">🧠 Última Actualización: <b>Gemini Pro</b></div>
     </div>
 
     <div class="terminal-container">
         <div class="terminal-title">terminal console</div>
-        <div class="terminal">
+        <div class="terminal" id="termConsole">
             >_ octomus@ia: <span class="green">feedback_procesado</span> (TGR)...<br>
-            <span class="white">'Soberanía' confirmada. .. [ 📡 ]</span><br><br>
-            >_ Bienvenido al núcleo.
+            <span class="white">'Soberanía' confirmada. .. [ 📡 ]</span><br>
+            >_ Sistema listo. Introduce un comando o busca arriba.
         </div>
     </div>
 
+    <script>
+        const consoleEl = document.getElementById('termConsole');
+
+        // Función para escribir en la terminal
+        function logTerminal(text, type = 'info') {
+            let colorClass = 'white';
+            if (type === 'success') colorClass = 'green';
+            if (type === 'warning') colorClass = 'yellow';
+            
+            consoleEl.innerHTML += `<br>>_ <span class="${colorClass}">${text}</span>`;
+            consoleEl.scrollTop = consoleEl.scrollHeight;
+        }
+
+        // Simulación de Entretenimiento: Diagnóstico Hacker
+        function runDiagnostics() {
+            const btn = document.getElementById('btnHack');
+            btn.disabled = true;
+            btn.innerText = "Procesando...";
+            
+            logTerminal("Iniciando escaneo de infraestructura en Tánger...", 'warning');
+            
+            setTimeout(() => logTerminal("Comprobando proot-distro Ubuntu...", 'info'), 600);
+            setTimeout(() => logTerminal("Pasarela PayRam: [ONLINE] - Esperando transacciones.", 'success'), 1200);
+            setTimeout(() => logTerminal("Misericord_iA Architecture: Protocolos de amabilidad estables.", 'success'), 1800);
+            setTimeout(() => {
+                logTerminal("Análisis Octomus v10 finalizado. Todo en orden. [ ✓ ]", 'success');
+                btn.disabled = false;
+                btn.innerText = "Diagnóstico";
+            }, 2500);
+        }
+
+        // Cambiar contenido dinámicamente
+        function changeApp(type) {
+            const title = document.getElementById('panelTitle');
+            const desc = document.getElementById('panelDesc');
+            if(type === 'gemini') {
+                title.innerText = "Gemini Advanced";
+                desc.innerText = "La inteligencia que se adapta a tu ritmo en Tánger.";
+                logTerminal("Información del núcleo cargada.");
+            }
+        }
+
+        // LÓGICA DEL BUSCADOR EN TIEMPO REAL
+        document.getElementById('searchBar').addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase();
+            if(query.length > 2) {
+                if(query.includes('nodo') || query.includes('africa')) {
+                    logTerminal("Buscando 'nodos'... Encontrados 24 terminales Termux redundantes.", 'success');
+                } else if(query.includes('etica') || query.includes('misericordia')) {
+                    logTerminal("Filosofía detectada: Arquitectura de la Bondad IA activa.", 'info');
+                } else if(query.includes('precio') || query.includes('mad')) {
+                    logTerminal("Catálogo: Servicios personalizados. Consulta vía WhatsApp.", 'warning');
+                } else {
+                    logTerminal(`Buscando de forma soberana: "${query}"... Sin coincidencias locales.`, 'white');
+                }
+            }
+        });
+    </script>
 </body>
 </html>
