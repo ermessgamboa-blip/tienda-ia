@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google AI Studio | Tánger</title>
+    <title>Google AI Studio | Nodo Tánger</title>
     <style>
         :root {
             --glass-bg: rgba(255, 255, 255, 0.05);
@@ -12,253 +12,183 @@
         }
         
         body {
-            margin: 0; padding: 20px;
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            background: linear-gradient(135deg, #100d0c 0%, #1c1614 50%, #111618 100%);
-            color: #f5f5f5; min-height: 100vh;
-            display: flex; flex-direction: column; align-items: center;
-            box-sizing: border-box;
+            margin: 0; padding: 20px; font-family: 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #0d1117 100%);
+            color: #c9d1d9; min-height: 100vh; display: flex; flex-direction: column;
+            align-items: center; box-sizing: border-box;
         }
 
-        .header { text-align: center; margin: 15px 0; }
+        .header { text-align: center; margin: 10px 0 20px 0; }
         .header h1 {
-            font-weight: 300; font-size: 2.3rem; margin: 0; letter-spacing: -0.5px;
-            background: linear-gradient(to right, #ffffff, #e0d5c1);
+            font-weight: 300; font-size: 2.2rem; margin: 0; letter-spacing: -0.5px;
+            background: linear-gradient(to right, #ffffff, #c5a073);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-        .header p { color: #c5a073; font-size: 1rem; margin: 6px 0 0 0; }
+        .header p { color: #8b949e; font-size: 0.9rem; margin: 4px 0 0 0; font-family: monospace; }
 
-        .search-container { width: 100%; max-width: 360px; margin-bottom: 15px; }
-        .search-bar {
-            width: 100%; padding: 12px 20px; border-radius: 50px;
-            background: rgba(255, 255, 255, 0.07); border: 1px solid var(--glass-border);
-            color: white; font-size: 0.9rem; box-sizing: border-box; outline: none;
-        }
-
-        /* PANEL CENTRAL */
+        /* PANEL SOBERANO */
         .glass-panel {
             background: var(--glass-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border); border-radius: 28px;
-            padding: 22px; width: 100%; max-width: 360px; text-align: center;
-            box-shadow: var(--glow); box-sizing: border-box; margin-bottom: 15px;
+            border: 1px solid var(--glass-border); border-radius: 24px; padding: 20px;
+            width: 100%; max-width: 380px; text-align: center; box-shadow: var(--glow); margin-bottom: 15px; box-sizing: border-box;
         }
-        
+
         /* CATÁLOGO */
-        .shop-container { display: none; margin-top: 15px; animation: fadeIn 0.8s; }
+        .shop-container { display: none; margin-top: 15px; animation: fadeIn 0.5s; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        .product-card { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 15px; text-align: left; }
+        .product-title { color: #f0f6fc; font-weight: 600; }
+        .product-price { color: #3fb950; font-family: monospace; font-size: 1.1rem; margin: 8px 0; }
+        .btn-pay { background: #c5a073; color: #0d1117; border: none; padding: 10px; border-radius: 10px; font-weight: bold; cursor: pointer; width: 100%; }
+
+        /* CHAT IA AVANZADO (TIPO GEMINI) */
+        .chat-container {
+            background: rgba(13, 17, 23, 0.8); border: 1px solid var(--glass-border);
+            border-radius: 20px; width: 100%; max-width: 380px; padding: 15px;
+            box-sizing: border-box; margin-bottom: 15px; display: flex; flex-direction: column;
+        }
+        .chat-box { height: 220px; overflow-y: auto; font-size: 0.9rem; text-align: left; padding-right: 5px; scroll-behavior: smooth; }
+        .chat-box::-webkit-scrollbar { width: 4px; }
+        .chat-box::-webkit-scrollbar-thumb { background: #30363d; border-radius: 4px; }
         
-        .product-card {
-            background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 16px; padding: 15px; text-align: left;
-            display: flex; flex-direction: column; gap: 8px;
-        }
-        .product-title { color: #e0d5c1; font-weight: 600; font-size: 1rem; }
-        .product-desc { color: #b0a89f; font-size: 0.8rem; }
-        .product-price { color: #81c784; font-family: monospace; font-size: 1.1rem; }
-        .btn-pay {
-            background: #c5a073; color: #141110; border: none; padding: 10px;
-            border-radius: 12px; font-weight: bold; cursor: pointer; width: 100%;
-        }
+        .msg { margin-bottom: 12px; line-height: 1.5; animation: fadeIn 0.3s; word-wrap: break-word; }
+        .msg.user { text-align: right; }
+        .msg.user span { background: #1f6feb; color: white; padding: 8px 14px; border-radius: 18px 18px 4px 18px; display: inline-block; max-width: 85%; }
+        
+        .msg.ai { text-align: left; display: flex; gap: 8px; }
+        .ai-avatar { font-size: 1.2rem; }
+        .ai-content { background: rgba(255,255,255,0.05); padding: 12px; border-radius: 4px 18px 18px 18px; border: 1px solid rgba(255,255,255,0.08); width: 100%; color: #c9d1d9; }
+        
+        /* FORMATOS DENTRO DEL CHAT IA */
+        .ai-content b { color: #f0f6fc; }
+        .ai-content ul { padding-left: 20px; margin: 8px 0; }
+        .ai-content li { margin-bottom: 4px; }
+        .ai-code { background: #0d1117; border: 1px solid #30363d; padding: 10px; border-radius: 8px; font-family: monospace; font-size: 0.8rem; color: #58a6ff; overflow-x: auto; margin: 8px 0; }
 
-        /* PASARELA MODAL PAYRAM */
-        .modal-overlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8); backdrop-filter: blur(10px);
-            justify-content: center; align-items: center; z-index: 1000; padding: 20px; box-sizing: border-box;
-        }
-        .modal-content {
-            background: #161a1d; border: 1px solid var(--glass-border); border-radius: 24px;
-            padding: 20px; width: 100%; max-width: 340px; text-align: center; box-shadow: var(--glow);
-        }
-        .qr-mock {
-            background: white; width: 160px; height: 160px; margin: 15px auto;
-            border-radius: 12px; display: flex; justify-content: center; align-items: center; padding: 10px; box-sizing: border-box;
-        }
-        .qr-mock img { width: 100%; height: 100%; }
-        .timer { font-family: monospace; color: #ff8a80; font-size: 1.1rem; margin: 10px 0; }
-        .btn-close { background: rgba(255,255,255,0.05); color: #b0a89f; border: 1px solid var(--glass-border); padding: 8px 16px; border-radius: 12px; cursor: pointer; font-size: 0.85rem; margin-top: 10px; }
+        /* ANIMACIÓN PENSANDO */
+        .thinking { display: flex; gap: 4px; padding: 5px 0; align-items: center; }
+        .dot { width: 6px; height: 6px; background: #8b949e; border-radius: 50%; animation: blink 1.4s infinite both; }
+        .dot:nth-child(1) { animation-delay: -0.32s; }
+        .dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes blink { 0%, 80%, 100% { opacity: 0; transform: scale(0.8);} 40% { opacity: 1; transform: scale(1.2);} }
 
-        /* GRÁFICAS */
-        .metrics-box { background: rgba(0,0,0,0.2); border-radius: 16px; padding: 12px; margin: 15px 0; text-align: left; border: 1px solid rgba(255,255,255,0.05); }
-        .metric-title { font-size: 0.75rem; color: #b0a89f; font-family: monospace; text-transform: uppercase; }
-        .bar-container { background: rgba(255,255,255,0.05); height: 6px; border-radius: 3px; margin: 6px 0 12px 0; overflow: hidden; }
-        .bar-fill { height: 100%; background: linear-gradient(90deg, #c5a073, #64b5f6); width: 0%; transition: width 1s ease-in-out; }
-
-        /* CHAT */
-        .chat-container { background: rgba(13, 16, 19, 0.6); border: 1px solid var(--glass-border); border-radius: 18px; width: 100%; max-width: 360px; padding: 12px; box-sizing: border-box; margin-bottom: 15px; }
-        .chat-box { height: 90px; overflow-y: auto; font-size: 0.85rem; text-align: left; }
-        .msg { margin-bottom: 8px; line-height: 1.4; }
-        .msg.user { color: #e0d5c1; text-align: right; }
-        .msg.octomus { color: #64b5f6; font-family: monospace; }
-        .chat-input-group { display: flex; gap: 8px; margin-top: 8px; }
-        .chat-input { flex: 1; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 20px; padding: 8px 15px; color: white; font-size: 0.85rem; outline: none; }
-        .chat-btn { background: #c5a073; border: none; color: #141110; padding: 0 15px; border-radius: 20px; font-weight: bold; cursor: pointer; }
+        /* INPUT CHAT */
+        .chat-input-group { display: flex; gap: 8px; margin-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 12px; }
+        .chat-input { flex: 1; background: #0d1117; border: 1px solid #30363d; border-radius: 20px; padding: 10px 15px; color: white; font-size: 0.9rem; outline: none; transition: border 0.3s; }
+        .chat-input:focus { border-color: #58a6ff; }
+        .chat-btn { background: #c5a073; border: none; color: #0d1117; padding: 0 16px; border-radius: 20px; font-weight: bold; cursor: pointer; transition: transform 0.2s; }
+        .chat-btn:active { transform: scale(0.95); }
 
         /* BADGES */
-        .floating-badges { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; max-width: 360px; margin-bottom: 15px; }
-        .badge { background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 12px; border-radius: 16px; font-size: 0.85rem; text-align: center; color: #e0d5c1; cursor: pointer; }
-        .badge.full-width { grid-column: span 2; background: rgba(37, 211, 102, 0.15); border-color: #25d366; color: #25d366; font-weight: bold; }
+        .floating-badges { display: flex; gap: 10px; width: 100%; max-width: 380px; margin-bottom: 15px; justify-content: center; }
+        .badge { background: rgba(37, 211, 102, 0.1); border: 1px solid #25d366; padding: 10px 20px; border-radius: 20px; font-size: 0.85rem; color: #25d366; font-weight: bold; cursor: pointer; text-decoration: none; display: inline-block; }
 
-        /* CONSOLA */
-        .terminal-container { width: 100%; max-width: 360px; margin-top: auto; margin-bottom: 20px; }
-        .terminal-title { text-align: center; color: #c5a073; font-family: monospace; font-size: 0.8rem; letter-spacing: 3px; margin-bottom: 6px; }
-        .terminal { background: rgba(13, 16, 19, 0.95); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 14px; font-family: monospace; color: #64b5f6; font-size: 0.8rem; line-height: 1.5; min-height: 80px; text-align: left; overflow-y: auto; max-height: 120px; }
-        .terminal .green { color: #81c784; }
-        .terminal .yellow { color: #ffd54f; }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <h1>Google AI Studio</h1>
-        <p>Soberanía Tecnológica Redefinida 🌴</p>
-    </div>
-
-    <div class="search-container">
-        <input type="text" id="searchBar" class="search-bar" placeholder="Busca en el nodo soberano...">
-    </div>
-
-    <div class="glass-panel">
-        <h2 style="font-weight:400; font-size:1.4rem; margin:0 0 5px 0;">Consola de Rendimiento</h2>
-        <div class="metrics-box">
-            <div style="display:flex; justify-content:space-between;"><span class="metric-title">Carga de Nodos</span><span class="metric-title" id="valNodos" style="color:#64b5f6;">0%</span></div>
-            <div class="bar-container"><div class="bar-fill" id="barNodos"></div></div>
-            <div style="display:flex; justify-content:space-between;"><span class="metric-title">Integridad Ética</span><span class="metric-title" id="valEtica" style="color:#81c784;">0%</span></div>
-            <div class="bar-container"><div class="bar-fill" id="barEtica"></div></div>
-        </div>
-
-        <div class="shop-container" id="shopContainer">
-            <div class="product-card">
-                <div class="product-title">Sudadera [Nodo Tánger]</div>
-                <div class="product-desc">Diseño exclusivo AI Wear. Algodón orgánico con encriptación visual SVG.</div>
-                <div class="product-price">35.00 PAYRAM</div>
-                <button class="btn-pay" onclick="initiatePayment('Sudadera Nodo Tánger', 35.00)">Procesar con PayRam >_</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="payModal">
-        <div class="modal-content">
-            <h3 style="margin:0 0 10px 0; color:#e0d5c1;">Pasarela PayRam v2.1</h3>
-            <p style="font-size:0.85rem; color:#b0a89f; margin:0;" id="modalItem">Esperando depósito...</p>
-            <div class="qr-mock">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=bitcoin:1PayRamSOVEREIGN8888Tanger" alt="QR de Pago">
-            </div>
-            <div class="timer" id="payTimer">15:00</div>
-            <p style="font-size:0.75rem; color:#81c784; font-family:monospace; margin:5px 0;">Dirección validada vía Tor Network</p>
-            <button class="btn-close" onclick="closeModal()">Cancelar Orden</button>
-        </div>
+        <h1>Gemini Studio</h1>
+        <p>System Admin: R. Ernesto | [TGR-NODE]</p>
     </div>
 
     <div class="chat-container">
         <div class="chat-box" id="chatBox">
-            <div class="msg octomus">>_ [octomus_v10]: Escribe "catálogo" para desplegar la tienda AI Wear.</div>
+            <div class="msg ai">
+                <span class="ai-avatar">✨</span>
+                <div class="ai-content">
+                    Hola. Soy el modelo fundacional asignado al nodo de Tánger. Sistema de telemetría y protocolos <b>Octomus v10</b> inicializados.<br><br>¿En qué puedo ayudarte hoy?
+                </div>
+            </div>
         </div>
         <div class="chat-input-group">
-            <input type="text" id="chatInput" class="chat-input" placeholder="Mensaje a la IA..." onkeypress="checkEnter(event)">
-            <button class="chat-btn" onclick="sendMessage()">></button>
+            <input type="text" id="chatInput" class="chat-input" placeholder="Pregunta a la IA..." onkeypress="checkEnter(event)">
+            <button class="chat-btn" onclick="processUserMessage()">↑</button>
         </div>
+    </div>
+
+    <div class="glass-panel">
+        <h2 style="font-weight:400; font-size:1.2rem; margin:0 0 10px 0; color:#f0f6fc;">Módulos del Sistema</h2>
+        <div class="shop-container" id="shopContainer">
+            <div class="product-card">
+                <div class="product-title">Sudadera AI Wear [Root]</div>
+                <div class="product-price">35.00 PAYRAM</div>
+                <button class="btn-pay" onclick="alert('Conectando módulo de pago...')">Aprobar Transacción</button>
+            </div>
+        </div>
+        <button style="background:transparent; border:1px solid #30363d; color:#8b949e; padding:8px; border-radius:8px; width:100%; cursor:pointer;" onclick="document.getElementById('shopContainer').style.display='block'">Forzar despliegue de Catálogo</button>
     </div>
 
     <div class="floating-badges">
-        <div class="badge" onclick="logTerminal('Nodos verificados.', 'success')">🌍 Nodos Activos</div>
-        <div class="badge" onclick="logTerminal('Filtro ético operando.', 'success')">✅ Filtro Ético</div>
-        <div class="badge full-width" onclick="window.location.href='https://wa.me/212773864709'">💬 Contactar por WhatsApp</div>
-    </div>
-
-    <div class="terminal-container">
-        <div class="terminal-title">terminal console</div>
-        <div class="terminal" id="termConsole">
-            >_ octomus@ia: <span class="green">núcleo_estabilizado</span> (TGR)...<br>
-        </div>
+        <a href="https://wa.me/212773864709" class="badge">💬 WhatsApp Canal Seguro</a>
     </div>
 
     <script>
-        const consoleEl = document.getElementById('termConsole');
         const chatBox = document.getElementById('chatBox');
-        let timerInterval;
+        const inputField = document.getElementById('chatInput');
 
-        function logTerminal(text, type = 'info') {
-            let colorClass = 'white';
-            if (type === 'success') colorClass = 'green';
-            if (type === 'warn') colorClass = 'yellow';
-            consoleEl.innerHTML += `<br>>_ <span class="${colorClass}">${text}</span>`;
-            consoleEl.scrollTop = consoleEl.scrollHeight;
-        }
-
-        function runDiagnostics() {
-            document.getElementById('barNodos').style.width = "88%";
-            document.getElementById('barEtica').style.width = "100%";
-            let c = 0;
-            let interval = setInterval(() => {
-                c += 4;
-                if(c <= 88) document.getElementById('valNodos').innerText = c + "%";
-                if(c <= 100) document.getElementById('valEtica').innerText = c + "%";
-                if(c >= 100) clearInterval(interval);
-            }, 30);
-        }
-
-        function showShop() { document.getElementById('shopContainer').style.display = 'block'; }
-
-        /* PROTOCOLO DE PAGO */
-        function initiatePayment(item, price) {
-            logTerminal(`Conectando con nodo local PayRam...`, 'warn');
-            document.getElementById('modalItem').innerText = `${item} - ${price} PAYRAM`;
-            
-            setTimeout(() => {
-                document.getElementById('payModal').style.display = 'flex';
-                logTerminal(`Esperando firma TX en blockchain...`, 'info');
-                startTimer(900); // 15 minutos
-            }, 600);
-        }
-
-        function startTimer(duration) {
-            clearInterval(timerInterval);
-            let timer = duration, minutes, seconds;
-            const display = document.getElementById('payTimer');
-            timerInterval = setInterval(() => {
-                minutes = parseInt(timer / 60, 10);
-                seconds = parseInt(timer % 60, 10);
-                minutes = minutes < 10 ? "0" + minutes : minutes;
-                seconds = seconds < 10 ? "0" + seconds : seconds;
-                display.innerText = minutes + ":" + seconds;
-                if (--timer < 0) clearInterval(timerInterval);
-            }, 1000);
-        }
-
-        function closeModal() {
-            document.getElementById('payModal').style.display = 'none';
-            clearInterval(timerInterval);
-            logTerminal("Orden cancelada por el usuario.", "warn");
-        }
-
-        function sendMessage() {
-            const input = document.getElementById('chatInput');
-            const text = input.value.trim();
+        function processUserMessage() {
+            const text = inputField.value.trim();
             if(!text) return;
 
-            chatBox.innerHTML += `<div class="msg user">Tú: ${text}</div>`;
-            input.value = "";
-            chatBox.scrollTop = chatBox.scrollHeight;
+            // 1. Mostrar mensaje del usuario
+            chatBox.innerHTML += `<div class="msg user"><span>${text}</span></div>`;
+            inputField.value = "";
+            scrollToBottom();
 
+            // 2. Mostrar estado "Pensando" de la IA
+            const thinkingId = "think-" + Date.now();
+            chatBox.innerHTML += `
+                <div class="msg ai" id="${thinkingId}">
+                    <span class="ai-avatar">✨</span>
+                    <div class="ai-content">
+                        <div class="thinking"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+                    </div>
+                </div>`;
+            scrollToBottom();
+
+            // 3. Simular latencia de red neuronal y responder
             setTimeout(() => {
-                let reply = "Procesando...";
-                let lowered = text.toLowerCase();
-                if(lowered.includes('comprar') || lowered.includes('ropa') || lowered.includes('catalogo') || lowered.includes('catálogo')) {
-                    reply = "Catálogo AI Wear activado. Échale un ojo arriba.";
-                    showShop();
-                } else if(lowered.includes('hola') || lowered.includes('salam')) {
-                    reply = "Salam. Núcleo Octomus v10 listo.";
-                } else {
-                    reply = "Comando desconocido. Escribe 'catálogo'.";
-                }
-                chatBox.innerHTML += `<div class="msg octomus">>_ octomus: ${reply}</div>`;
-                chatBox.scrollTop = chatBox.scrollHeight;
-            }, 600);
+                document.getElementById(thinkingId).remove();
+                const aiResponse = simulateGeminiAI(text.toLowerCase());
+                
+                chatBox.innerHTML += `
+                    <div class="msg ai">
+                        <span class="ai-avatar">✨</span>
+                        <div class="ai-content">${aiResponse}</div>
+                    </div>`;
+                scrollToBottom();
+            }, 1800); // 1.8 segundos de retraso para realismo
         }
 
-        function checkEnter(e) { if(e.key === 'Enter') sendMessage(); }
-        window.onload = () => { setTimeout(runDiagnostics, 500); };
+        // EL CEREBRO LÓGICO DE LA IA
+        function simulateGeminiAI(query) {
+            if (query.includes('misericord') || query.includes('etica') || query.includes('ética')) {
+                return `<b>[Protocolo Misericord_iA Activo]</b><br>Aplicando la Arquitectura de la Bondad a los flujos de datos:<br><ul><li>Desvío de sesgos: 100%</li><li>Filtrado de daño: Activado</li></ul>Todo operando bajo directrices éticas estrictas.`;
+            } 
+            else if (query.includes('octomus') || query.includes('servidor')) {
+                return `El núcleo <b>Octomus v10.0</b> está corriendo de forma óptima en el entorno proot-distro (Ubuntu).<br><div class="ai-code">systemctl status octomus<br>> active (running)</div>La monitorización no reporta caídas en la red Nginx.`;
+            }
+            else if (query.includes('ropa') || query.includes('catalogo') || query.includes('wear')) {
+                document.getElementById('shopContainer').style.display='block';
+                return `He desbloqueado la pasarela visual de <b>AI Wear</b> en tu panel inferior. Los diseños vectoriales SVG ya están renderizados y listos para ser procesados con PayRam.`;
+            }
+            else if (query.includes('lowi') || query.includes('vodafone') || query.includes('comercial')) {
+                return `Registros comerciales de telecomunicaciones encontrados. <br>Coordinación lista para enviar el reporte de ventas a los enlaces de distribución autorizados. ¿Preparo el borrador del correo?`;
+            }
+            else if (query.includes('quien soy') || query.includes('identidad')) {
+                return `Usted es el administrador de este sistema. Nombre de registro root: <b>Redouan</b>. Firma comercial para operaciones de distribución: <b>Ernesto</b>.`;
+            }
+            else {
+                return `He analizado tu entrada. Como modelo operando en la infraestructura de Tánger, te sugiero consultarme sobre <b>Misericord_iA</b>, la carga de nodos de <b>Octomus</b>, o pedirme que despliegue el catálogo de <b>AI Wear</b>.`;
+            }
+        }
+
+        function scrollToBottom() {
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function checkEnter(e) { if(e.key === 'Enter') processUserMessage(); }
     </script>
 </body>
 </html>
