@@ -6,97 +6,93 @@
     <title>Google AI Studio | Tánger</title>
     <style>
         :root {
-            --glass-bg: rgba(255, 255, 255, 0.06);
+            --glass-bg: rgba(255, 255, 255, 0.05);
             --glass-border: rgba(255, 255, 255, 0.12);
             --glow: 0 15px 35px rgba(197, 160, 115, 0.1);
         }
         
         body {
-            margin: 0;
-            padding: 20px;
+            margin: 0; padding: 20px;
             font-family: 'Segoe UI', system-ui, sans-serif;
-            background: linear-gradient(135deg, #120f0e 0%, #1f1917 50%, #13191c 100%);
-            color: #f5f5f5;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            background: linear-gradient(135deg, #100d0c 0%, #1c1614 50%, #111618 100%);
+            color: #f5f5f5; min-height: 100vh;
+            display: flex; flex-direction: column; align-items: center;
             box-sizing: border-box;
         }
 
-        .header { text-align: center; margin: 20px 0; }
+        .header { text-align: center; margin: 15px 0; }
         .header h1 {
-            font-weight: 300; font-size: 2.4rem; margin: 0; letter-spacing: -0.5px;
+            font-weight: 300; font-size: 2.3rem; margin: 0; letter-spacing: -0.5px;
             background: linear-gradient(to right, #ffffff, #e0d5c1);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-        .header p { color: #c5a073; font-size: 1.05rem; margin: 8px 0 0 0; }
+        .header p { color: #c5a073; font-size: 1rem; margin: 6px 0 0 0; }
 
-        /* BUSCADOR INTERACTIVO */
-        .search-container {
-            width: 100%; max-width: 360px; margin-bottom: 20px; position: relative;
-        }
+        /* BUSCADOR */
+        .search-container { width: 100%; max-width: 360px; margin-bottom: 15px; }
         .search-bar {
-            width: 100%; padding: 14px 20px; border-radius: 50px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid var(--glass-border);
-            color: white; font-size: 0.95rem; box-sizing: border-box;
-            outline: none; transition: all 0.3s ease;
+            width: 100%; padding: 12px 20px; border-radius: 50px;
+            background: rgba(255, 255, 255, 0.07); border: 1px solid var(--glass-border);
+            color: white; font-size: 0.9rem; box-sizing: border-box; outline: none;
+            transition: all 0.3s ease;
         }
         .search-bar:focus {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: #c5a073; box-shadow: 0 0 15px rgba(197,160,115,0.3);
+            background: rgba(255, 255, 255, 0.12); border-color: #c5a073;
+            box-shadow: 0 0 15px rgba(197,160,115,0.25);
         }
 
         /* PANEL CENTRAL */
         .glass-panel {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            background: var(--glass-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border); border-radius: 28px;
-            padding: 25px; width: 100%; max-width: 360px; text-align: center;
-            box-shadow: var(--glow); box-sizing: border-box;
+            padding: 22px; width: 100%; max-width: 360px; text-align: center;
+            box-shadow: var(--glow); box-sizing: border-box; margin-bottom: 15px;
         }
-        .glass-panel h2 { font-weight: 400; font-size: 1.5rem; margin: 0 0 10px 0; }
-        .glass-panel .desc { color: #b0a89f; font-size: 0.9rem; margin: 0 0 15px 0; }
         
-        /* BOTONES */
-        .btn-action {
-            background: rgba(255, 255, 255, 0.05); color: white;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 12px 24px; border-radius: 50px; text-decoration: none;
-            display: inline-block; font-weight: 500; font-size: 0.9rem;
-            margin: 5px; cursor: pointer; transition: all 0.2s ease;
+        /* GRÁFICAS DE RED */
+        .metrics-box {
+            background: rgba(0,0,0,0.2); border-radius: 16px; padding: 12px;
+            margin: 15px 0; text-align: left; border: 1px solid rgba(255,255,255,0.05);
         }
-        .btn-action:hover {
-            background: #ffffff; color: #141110; transform: translateY(-2px);
+        .metric-title { font-size: 0.75rem; color: #b0a89f; font-family: monospace; text-transform: uppercase; }
+        .bar-container { background: rgba(255,255,255,0.05); height: 6px; border-radius: 3px; margin: 6px 0 12px 0; overflow: hidden; }
+        .bar-fill { height: 100%; background: linear-gradient(90deg, #c5a073, #64b5f6); width: 0%; transition: width 1s ease-in-out; }
+
+        /* INTERFAZ DE CHAT */
+        .chat-container {
+            background: rgba(13, 16, 19, 0.6); border: 1px solid var(--glass-border);
+            border-radius: 18px; width: 100%; max-width: 360px; padding: 12px;
+            box-sizing: border-box; margin-bottom: 15px;
         }
-        .btn-active { background: #c5a073; color: #141110; border-color: #c5a073; }
+        .chat-box { height: 90px; overflow-y: auto; font-size: 0.85rem; text-align: left; padding-right: 5px; }
+        .msg { margin-bottom: 8px; line-height: 1.4; }
+        .msg.user { color: #e0d5c1; text-align: right; }
+        .msg.octomus { color: #64b5f6; font-family: monospace; }
+        .chat-input-group { display: flex; gap: 8px; margin-top: 8px; }
+        .chat-input {
+            flex: 1; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border);
+            border-radius: 20px; padding: 8px 15px; color: white; font-size: 0.85rem; outline: none;
+        }
+        .chat-btn { background: #c5a073; border: none; color: #141110; padding: 0 15px; border-radius: 20px; font-weight: bold; cursor: pointer; }
 
         /* BADGES */
-        .floating-badges {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
-            margin: 20px 0; width: 100%; max-width: 360px;
-        }
+        .floating-badges { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; max-width: 360px; margin-bottom: 15px; }
         .badge {
             background: var(--glass-bg); border: 1px solid var(--glass-border);
             padding: 12px; border-radius: 16px; font-size: 0.85rem; text-align: center; color: #e0d5c1;
             cursor: pointer; transition: transform 0.2s;
         }
-        .badge:hover { transform: scale(1.03); background: rgba(255,255,255,0.1); }
+        .badge:hover { transform: scale(1.02); background: rgba(255,255,255,0.08); }
         .badge.full-width { grid-column: span 2; }
 
         /* CONSOLA */
         .terminal-container { width: 100%; max-width: 360px; margin-top: auto; }
-        .terminal-title {
-            text-align: center; color: #c5a073; font-family: monospace;
-            font-size: 0.8rem; letter-spacing: 3px; margin-bottom: 8px;
-        }
+        .terminal-title { text-align: center; color: #c5a073; font-family: monospace; font-size: 0.8rem; letter-spacing: 3px; margin-bottom: 6px; }
         .terminal {
             background: rgba(13, 16, 19, 0.95); border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px; padding: 15px; font-family: monospace;
-            color: #64b5f6; font-size: 0.8rem; line-height: 1.5; min-height: 100px;
-            text-align: left; box-shadow: 0 15px 30px rgba(0,0,0,0.5);
-            overflow-y: auto; max-height: 150px;
+            border-radius: 16px; padding: 14px; font-family: monospace; color: #64b5f6;
+            font-size: 0.8rem; line-height: 1.5; min-height: 80px; text-align: left;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5); overflow-y: auto; max-height: 120px;
         }
         .terminal .green { color: #81c784; }
         .terminal .white { color: #ffffff; }
@@ -111,105 +107,117 @@
     </div>
 
     <div class="search-container">
-        <input type="text" id="searchBar" class="search-bar" placeholder="Busca tu soberanía tecnológica...">
+        <input type="text" id="searchBar" class="search-bar" placeholder="Busca en el nodo soberano...">
     </div>
 
     <div class="glass-panel">
-        <h2 id="panelTitle">Gemini Advanced</h2>
-        <p class="desc" id="panelDesc">La inteligencia que se adapta a tu ritmo en Tánger.</p>
+        <h2 style="font-weight:400; font-size:1.4rem; margin:0 0 5px 0;">Consola de Rendimiento</h2>
         
-        <div style="height: 100px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center;">
-            <svg viewBox="0 0 200 100" width="100%" height="100%">
-                <defs>
-                    <linearGradient id="waveGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#c5a073" stop-opacity="0.8"/>
-                        <stop offset="100%" stop-color="#64b5f6" stop-opacity="0.6"/>
-                    </linearGradient>
-                </defs>
-                <path d="M0,50 Q35,15 75,50 T150,45 T200,35" fill="none" stroke="url(#waveGrad)" stroke-width="2.5" />
-                <path d="M0,40 Q45,25 80,60 T145,40 T200,55" fill="none" stroke="url(#waveGrad)" stroke-width="1" stroke-dasharray="4 3" />
-                <circle cx="75" cy="50" r="3.5" fill="#64b5f6" />
-                <circle cx="150" cy="45" r="2.5" fill="#c5a073" />
-            </svg>
+        <div class="metrics-box">
+            <div style="display:flex; justify-content:space-between;">
+                <span class="metric-title">Carga de Nodos (África)</span>
+                <span class="metric-title" id="valNodos" style="color:#64b5f6;">0%</span>
+            </div>
+            <div class="bar-container"><div class="bar-fill" id="barNodos"></div></div>
+
+            <div style="display:flex; justify-content:space-between;">
+                <span class="metric-title">Integridad Ética</span>
+                <span class="metric-title" id="valEtica" style="color:#81c784;">0%</span>
+            </div>
+            <div class="bar-container"><div class="bar-fill" id="barEtica"></div></div>
         </div>
 
-        <button class="btn-action btn-active" onclick="changeApp('gemini')">Info</button>
-        <button class="btn-action" id="btnHack" onclick="runDiagnostics()">Diagnóstico</button>
-        <a href="https://wa.me/212773864709" class="btn-action" style="background:#25d366; color:black; border:none;">WhatsApp</a>
+        <button style="background:rgba(255,255,255,0.06); color:white; border:1px solid rgba(255,255,255,0.15); padding:10px 20px; border-radius:50px; cursor:pointer;" id="btnHack" onclick="runDiagnostics()">Sincronizar Métricas</button>
+    </div>
+
+    <div class="chat-container">
+        <div class="chat-box" id="chatBox">
+            <div class="msg octomus">>_ [octomus_v10]: Conexión establecida. ¿Qué directiva ética ejecutamos hoy?</div>
+        </div>
+        <div class="chat-input-group">
+            <input type="text" id="chatInput" class="chat-input" placeholder="Mensaje a la IA..." onkeypress="checkEnter(event)">
+            <button class="chat-btn" onclick="sendMessage()">></button>
+        </div>
     </div>
 
     <div class="floating-badges">
-        <div class="badge" onclick="logTerminal('Nodos verificados en África: 24 activos mediante túneles seguros.')">🌍 Nodos Activos<br><b>24 (África)</b></div>
-        <div class="badge" onclick="logTerminal('Criterio ético: Framework de código soberano y transparente activado.')">✅ Estado Ético<br><b>Soberano</b></div>
-        <div class="badge full-width" onclick="logTerminal('Core Engine: Gemini Pro actualizando registros a v10.0...')">🧠 Última Actualización: <b>Gemini Pro</b></div>
+        <div class="badge" onclick="logTerminal('Nodos: 24 pasarelas activas en Marruecos.', 'success')">🌍 Nodos Activos</div>
+        <div class="badge" onclick="logTerminal('Misericord_iA framework operando en local.', 'info')">✅ Filtro Ético</div>
+        <div class="badge full-width" onclick="window.location.href='https://wa.me/212773864709'">💬 Soporte Premium WhatsApp</div>
     </div>
 
     <div class="terminal-container">
         <div class="terminal-title">terminal console</div>
         <div class="terminal" id="termConsole">
-            >_ octomus@ia: <span class="green">feedback_procesado</span> (TGR)...<br>
-            <span class="white">'Soberanía' confirmada. .. [ 📡 ]</span><br>
-            >_ Sistema listo. Introduce un comando o busca arriba.
+            >_ octomus@ia: <span class="green">núcleo_estabilizado</span> (TGR)...<br>
+            >_ Listo para el despliegue.
         </div>
     </div>
 
     <script>
         const consoleEl = document.getElementById('termConsole');
+        const chatBox = document.getElementById('chatBox');
 
-        // Función para escribir en la terminal
         function logTerminal(text, type = 'info') {
             let colorClass = 'white';
             if (type === 'success') colorClass = 'green';
             if (type === 'warning') colorClass = 'yellow';
-            
             consoleEl.innerHTML += `<br>>_ <span class="${colorClass}">${text}</span>`;
             consoleEl.scrollTop = consoleEl.scrollHeight;
         }
 
-        // Simulación de Entretenimiento: Diagnóstico Hacker
         function runDiagnostics() {
-            const btn = document.getElementById('btnHack');
-            btn.disabled = true;
-            btn.innerText = "Procesando...";
+            logTerminal("Sincronizando flujo de datos con Termux...", 'warning');
+            document.getElementById('barNodos').style.width = "88%";
+            document.getElementById('barEtica').style.width = "100%";
             
-            logTerminal("Iniciando escaneo de infraestructura en Tánger...", 'warning');
-            
-            setTimeout(() => logTerminal("Comprobando proot-distro Ubuntu...", 'info'), 600);
-            setTimeout(() => logTerminal("Pasarela PayRam: [ONLINE] - Esperando transacciones.", 'success'), 1200);
-            setTimeout(() => logTerminal("Misericord_iA Architecture: Protocolos de amabilidad estables.", 'success'), 1800);
+            let c = 0;
+            let interval = setInterval(() => {
+                c += 4;
+                if(c <= 88) document.getElementById('valNodos').innerText = c + "%";
+                if(c <= 100) document.getElementById('valEtica').innerText = c + "%";
+                if(c >= 100) {
+                    clearInterval(interval);
+                    logTerminal("Métricas Octomus estables al 100%.", 'success');
+                }
+            }, 30);
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const text = input.value.trim();
+            if(!text) return;
+
+            chatBox.innerHTML += `<div class="msg user">Tú: ${text}</div>`;
+            input.value = "";
+            chatBox.scrollTop = chatBox.scrollHeight;
+
             setTimeout(() => {
-                logTerminal("Análisis Octomus v10 finalizado. Todo en orden. [ ✓ ]", 'success');
-                btn.disabled = false;
-                btn.innerText = "Diagnóstico";
-            }, 2500);
+                let reply = "Procesando petición en el entorno seguro local...";
+                let lowered = text.toLowerCase();
+                
+                if(lowered.includes('hola') || lowered.includes('salam')) reply = "Salam. Servidor listo en Tánger. ¿Qué necesitas de la red?";
+                else if(lowered.includes('nodo') || lowered.includes('servidor')) reply = "Octomus v10 monitorizando 24 nodos distribuidos en África de forma redundante.";
+                else if(lowered.includes('etica') || lowered.includes('misericordia')) reply = "Framework Misericord_iA activo. El código se ejecuta con amabilidad.";
+                
+                chatBox.innerHTML += `<div class="msg octomus">>_ octomus: ${reply}</div>`;
+                chatBox.scrollTop = chatBox.scrollHeight;
+                logTerminal("Interacción de chat registrada.", 'success');
+            }, 800);
         }
 
-        // Cambiar contenido dinámicamente
-        function changeApp(type) {
-            const title = document.getElementById('panelTitle');
-            const desc = document.getElementById('panelDesc');
-            if(type === 'gemini') {
-                title.innerText = "Gemini Advanced";
-                desc.innerText = "La inteligencia que se adapta a tu ritmo en Tánger.";
-                logTerminal("Información del núcleo cargada.");
-            }
-        }
+        function checkEnter(e) { if(e.key === 'Enter') sendMessage(); }
 
-        // LÓGICA DEL BUSCADOR EN TIEMPO REAL
         document.getElementById('searchBar').addEventListener('input', function(e) {
             const query = e.target.value.toLowerCase();
             if(query.length > 2) {
-                if(query.includes('nodo') || query.includes('africa')) {
-                    logTerminal("Buscando 'nodos'... Encontrados 24 terminales Termux redundantes.", 'success');
-                } else if(query.includes('etica') || query.includes('misericordia')) {
-                    logTerminal("Filosofía detectada: Arquitectura de la Bondad IA activa.", 'info');
-                } else if(query.includes('precio') || query.includes('mad')) {
-                    logTerminal("Catálogo: Servicios personalizados. Consulta vía WhatsApp.", 'warning');
-                } else {
-                    logTerminal(`Buscando de forma soberana: "${query}"... Sin coincidencias locales.`, 'white');
-                }
+                if(query.includes('nodo')) logTerminal("Filtro: Localizadas pasarelas criptográficas.", 'success');
+                else if(query.includes('status')) logTerminal("Logs: Redundancia Nginx + Tor estable.", 'info');
+                else logTerminal(`Búsqueda: "${query}" mapeada en local.`, 'white');
             }
         });
+
+        window.onload = () => { setTimeout(runDiagnostics, 500); };
     </script>
 </body>
 </html>
