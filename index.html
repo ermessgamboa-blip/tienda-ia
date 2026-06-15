@@ -36,67 +36,57 @@
             color: white; font-size: 0.9rem; box-sizing: border-box; outline: none;
             transition: all 0.3s ease;
         }
-        .search-bar:focus {
-            background: rgba(255, 255, 255, 0.12); border-color: #c5a073;
-            box-shadow: 0 0 15px rgba(197,160,115,0.25);
-        }
 
-        /* PANEL CENTRAL */
+        /* PANEL CENTRAL Y TIENDA (AI WEAR) */
         .glass-panel {
             background: var(--glass-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border); border-radius: 28px;
             padding: 22px; width: 100%; max-width: 360px; text-align: center;
             box-shadow: var(--glow); box-sizing: border-box; margin-bottom: 15px;
+            transition: all 0.5s ease;
         }
         
-        /* GRÁFICAS DE RED */
-        .metrics-box {
-            background: rgba(0,0,0,0.2); border-radius: 16px; padding: 12px;
-            margin: 15px 0; text-align: left; border: 1px solid rgba(255,255,255,0.05);
+        /* CATÁLOGO OCULTO AI WEAR */
+        .shop-container { display: none; margin-top: 15px; animation: fadeIn 0.8s; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .product-card {
+            background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 16px; padding: 15px; margin-bottom: 10px; text-align: left;
+            display: flex; flex-direction: column; gap: 8px;
         }
+        .product-title { color: #e0d5c1; font-weight: 600; font-size: 1rem; }
+        .product-desc { color: #b0a89f; font-size: 0.8rem; }
+        .product-price { color: #81c784; font-family: monospace; font-size: 1.1rem; }
+        .btn-pay {
+            background: #c5a073; color: #141110; border: none; padding: 10px;
+            border-radius: 12px; font-weight: bold; cursor: pointer; width: 100%;
+            transition: background 0.2s;
+        }
+        .btn-pay:hover { background: #e0d5c1; }
+
+        /* GRÁFICAS DE RED */
+        .metrics-box { background: rgba(0,0,0,0.2); border-radius: 16px; padding: 12px; margin: 15px 0; text-align: left; border: 1px solid rgba(255,255,255,0.05); }
         .metric-title { font-size: 0.75rem; color: #b0a89f; font-family: monospace; text-transform: uppercase; }
         .bar-container { background: rgba(255,255,255,0.05); height: 6px; border-radius: 3px; margin: 6px 0 12px 0; overflow: hidden; }
         .bar-fill { height: 100%; background: linear-gradient(90deg, #c5a073, #64b5f6); width: 0%; transition: width 1s ease-in-out; }
 
         /* INTERFAZ DE CHAT */
-        .chat-container {
-            background: rgba(13, 16, 19, 0.6); border: 1px solid var(--glass-border);
-            border-radius: 18px; width: 100%; max-width: 360px; padding: 12px;
-            box-sizing: border-box; margin-bottom: 15px;
-        }
+        .chat-container { background: rgba(13, 16, 19, 0.6); border: 1px solid var(--glass-border); border-radius: 18px; width: 100%; max-width: 360px; padding: 12px; box-sizing: border-box; margin-bottom: 15px; }
         .chat-box { height: 90px; overflow-y: auto; font-size: 0.85rem; text-align: left; padding-right: 5px; }
         .msg { margin-bottom: 8px; line-height: 1.4; }
         .msg.user { color: #e0d5c1; text-align: right; }
         .msg.octomus { color: #64b5f6; font-family: monospace; }
         .chat-input-group { display: flex; gap: 8px; margin-top: 8px; }
-        .chat-input {
-            flex: 1; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border);
-            border-radius: 20px; padding: 8px 15px; color: white; font-size: 0.85rem; outline: none;
-        }
+        .chat-input { flex: 1; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 20px; padding: 8px 15px; color: white; font-size: 0.85rem; outline: none; }
         .chat-btn { background: #c5a073; border: none; color: #141110; padding: 0 15px; border-radius: 20px; font-weight: bold; cursor: pointer; }
-
-        /* BADGES */
-        .floating-badges { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; max-width: 360px; margin-bottom: 15px; }
-        .badge {
-            background: var(--glass-bg); border: 1px solid var(--glass-border);
-            padding: 12px; border-radius: 16px; font-size: 0.85rem; text-align: center; color: #e0d5c1;
-            cursor: pointer; transition: transform 0.2s;
-        }
-        .badge:hover { transform: scale(1.02); background: rgba(255,255,255,0.08); }
-        .badge.full-width { grid-column: span 2; }
 
         /* CONSOLA */
         .terminal-container { width: 100%; max-width: 360px; margin-top: auto; }
         .terminal-title { text-align: center; color: #c5a073; font-family: monospace; font-size: 0.8rem; letter-spacing: 3px; margin-bottom: 6px; }
-        .terminal {
-            background: rgba(13, 16, 19, 0.95); border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px; padding: 14px; font-family: monospace; color: #64b5f6;
-            font-size: 0.8rem; line-height: 1.5; min-height: 80px; text-align: left;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.5); overflow-y: auto; max-height: 120px;
-        }
+        .terminal { background: rgba(13, 16, 19, 0.95); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 14px; font-family: monospace; color: #64b5f6; font-size: 0.8rem; line-height: 1.5; min-height: 80px; text-align: left; overflow-y: auto; max-height: 120px; }
         .terminal .green { color: #81c784; }
         .terminal .white { color: #ffffff; }
-        .terminal .yellow { color: #ffd54f; }
     </style>
 </head>
 <body>
@@ -106,33 +96,35 @@
         <p>Soberanía Tecnológica Redefinida 🌴</p>
     </div>
 
-    <div class="search-container">
-        <input type="text" id="searchBar" class="search-bar" placeholder="Busca en el nodo soberano...">
-    </div>
-
     <div class="glass-panel">
         <h2 style="font-weight:400; font-size:1.4rem; margin:0 0 5px 0;">Consola de Rendimiento</h2>
         
         <div class="metrics-box">
-            <div style="display:flex; justify-content:space-between;">
-                <span class="metric-title">Carga de Nodos (África)</span>
-                <span class="metric-title" id="valNodos" style="color:#64b5f6;">0%</span>
-            </div>
+            <div style="display:flex; justify-content:space-between;"><span class="metric-title">Carga de Nodos (África)</span><span class="metric-title" id="valNodos" style="color:#64b5f6;">0%</span></div>
             <div class="bar-container"><div class="bar-fill" id="barNodos"></div></div>
-
-            <div style="display:flex; justify-content:space-between;">
-                <span class="metric-title">Integridad Ética</span>
-                <span class="metric-title" id="valEtica" style="color:#81c784;">0%</span>
-            </div>
+            <div style="display:flex; justify-content:space-between;"><span class="metric-title">Integridad Ética</span><span class="metric-title" id="valEtica" style="color:#81c784;">0%</span></div>
             <div class="bar-container"><div class="bar-fill" id="barEtica"></div></div>
         </div>
 
-        <button style="background:rgba(255,255,255,0.06); color:white; border:1px solid rgba(255,255,255,0.15); padding:10px 20px; border-radius:50px; cursor:pointer;" id="btnHack" onclick="runDiagnostics()">Sincronizar Métricas</button>
+        <div class="shop-container" id="shopContainer">
+            <div class="product-card">
+                <div class="product-title">Sudadera [Nodo Tánger]</div>
+                <div class="product-desc">Diseño exclusivo AI Wear. Algodón orgánico con encriptación visual SVG.</div>
+                <div class="product-price">35.00 PAYRAM</div>
+                <button class="btn-pay" onclick="initiatePayment('Sudadera Nodo Tánger')">Procesar con PayRam >_</button>
+            </div>
+            <div class="product-card">
+                <div class="product-title">Camiseta [Misericord_iA]</div>
+                <div class="product-desc">Edición Arquitectura de la Bondad. Código soberano impreso en la espalda.</div>
+                <div class="product-price">20.00 PAYRAM</div>
+                <button class="btn-pay" onclick="initiatePayment('Camiseta Misericord_iA')">Procesar con PayRam >_</button>
+            </div>
+        </div>
     </div>
 
     <div class="chat-container">
         <div class="chat-box" id="chatBox">
-            <div class="msg octomus">>_ [octomus_v10]: Conexión establecida. ¿Qué directiva ética ejecutamos hoy?</div>
+            <div class="msg octomus">>_ [octomus_v10]: Conexión establecida. Escribe "catálogo" o "comprar" para desplegar la tienda AI Wear.</div>
         </div>
         <div class="chat-input-group">
             <input type="text" id="chatInput" class="chat-input" placeholder="Mensaje a la IA..." onkeypress="checkEnter(event)">
@@ -140,17 +132,10 @@
         </div>
     </div>
 
-    <div class="floating-badges">
-        <div class="badge" onclick="logTerminal('Nodos: 24 pasarelas activas en Marruecos.', 'success')">🌍 Nodos Activos</div>
-        <div class="badge" onclick="logTerminal('Misericord_iA framework operando en local.', 'info')">✅ Filtro Ético</div>
-        <div class="badge full-width" onclick="window.location.href='https://wa.me/212773864709'">💬 Soporte Premium WhatsApp</div>
-    </div>
-
     <div class="terminal-container">
         <div class="terminal-title">terminal console</div>
         <div class="terminal" id="termConsole">
             >_ octomus@ia: <span class="green">núcleo_estabilizado</span> (TGR)...<br>
-            >_ Listo para el despliegue.
         </div>
     </div>
 
@@ -161,26 +146,32 @@
         function logTerminal(text, type = 'info') {
             let colorClass = 'white';
             if (type === 'success') colorClass = 'green';
-            if (type === 'warning') colorClass = 'yellow';
             consoleEl.innerHTML += `<br>>_ <span class="${colorClass}">${text}</span>`;
             consoleEl.scrollTop = consoleEl.scrollHeight;
         }
 
         function runDiagnostics() {
-            logTerminal("Sincronizando flujo de datos con Termux...", 'warning');
             document.getElementById('barNodos').style.width = "88%";
             document.getElementById('barEtica').style.width = "100%";
-            
             let c = 0;
             let interval = setInterval(() => {
                 c += 4;
                 if(c <= 88) document.getElementById('valNodos').innerText = c + "%";
                 if(c <= 100) document.getElementById('valEtica').innerText = c + "%";
-                if(c >= 100) {
-                    clearInterval(interval);
-                    logTerminal("Métricas Octomus estables al 100%.", 'success');
-                }
+                if(c >= 100) clearInterval(interval);
             }, 30);
+        }
+
+        function showShop() {
+            document.getElementById('shopContainer').style.display = 'block';
+            logTerminal("Módulo comercial AI Wear desplegado.", 'success');
+        }
+
+        function initiatePayment(item) {
+            logTerminal(`Generando ticket PayRam para: [${item}]...`, 'info');
+            setTimeout(() => {
+                logTerminal("Esperando confirmación en la pasarela de pago descentralizada.", 'success');
+            }, 1000);
         }
 
         function sendMessage() {
@@ -193,30 +184,24 @@
             chatBox.scrollTop = chatBox.scrollHeight;
 
             setTimeout(() => {
-                let reply = "Procesando petición en el entorno seguro local...";
+                let reply = "Procesando petición...";
                 let lowered = text.toLowerCase();
                 
-                if(lowered.includes('hola') || lowered.includes('salam')) reply = "Salam. Servidor listo en Tánger. ¿Qué necesitas de la red?";
-                else if(lowered.includes('nodo') || lowered.includes('servidor')) reply = "Octomus v10 monitorizando 24 nodos distribuidos en África de forma redundante.";
-                else if(lowered.includes('etica') || lowered.includes('misericordia')) reply = "Framework Misericord_iA activo. El código se ejecuta con amabilidad.";
+                if(lowered.includes('comprar') || lowered.includes('ropa') || lowered.includes('catalogo') || lowered.includes('catálogo') || lowered.includes('ai wear')) {
+                    reply = "Desplegando catálogo comercial AI Wear. Conexión PayRam preparada.";
+                    showShop();
+                } else if(lowered.includes('hola') || lowered.includes('salam')) {
+                    reply = "Salam. Servidor listo en Tánger.";
+                } else {
+                    reply = "Comando no reconocido. Prueba a escribir 'catálogo' para ver la tienda.";
+                }
                 
                 chatBox.innerHTML += `<div class="msg octomus">>_ octomus: ${reply}</div>`;
                 chatBox.scrollTop = chatBox.scrollHeight;
-                logTerminal("Interacción de chat registrada.", 'success');
             }, 800);
         }
 
         function checkEnter(e) { if(e.key === 'Enter') sendMessage(); }
-
-        document.getElementById('searchBar').addEventListener('input', function(e) {
-            const query = e.target.value.toLowerCase();
-            if(query.length > 2) {
-                if(query.includes('nodo')) logTerminal("Filtro: Localizadas pasarelas criptográficas.", 'success');
-                else if(query.includes('status')) logTerminal("Logs: Redundancia Nginx + Tor estable.", 'info');
-                else logTerminal(`Búsqueda: "${query}" mapeada en local.`, 'white');
-            }
-        });
-
         window.onload = () => { setTimeout(runDiagnostics, 500); };
     </script>
 </body>
