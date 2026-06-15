@@ -28,16 +28,14 @@
         }
         .header p { color: #c5a073; font-size: 1rem; margin: 6px 0 0 0; }
 
-        /* BUSCADOR */
         .search-container { width: 100%; max-width: 360px; margin-bottom: 15px; }
         .search-bar {
             width: 100%; padding: 12px 20px; border-radius: 50px;
             background: rgba(255, 255, 255, 0.07); border: 1px solid var(--glass-border);
             color: white; font-size: 0.9rem; box-sizing: border-box; outline: none;
-            transition: all 0.3s ease;
         }
 
-        /* PANEL CENTRAL Y TIENDA */
+        /* PANEL CENTRAL */
         .glass-panel {
             background: var(--glass-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border); border-radius: 28px;
@@ -45,13 +43,13 @@
             box-shadow: var(--glow); box-sizing: border-box; margin-bottom: 15px;
         }
         
-        /* CATÁLOGO OCULTO AI WEAR */
+        /* CATÁLOGO */
         .shop-container { display: none; margin-top: 15px; animation: fadeIn 0.8s; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
         
         .product-card {
             background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 16px; padding: 15px; margin-bottom: 10px; text-align: left;
+            border-radius: 16px; padding: 15px; text-align: left;
             display: flex; flex-direction: column; gap: 8px;
         }
         .product-title { color: #e0d5c1; font-weight: 600; font-size: 1rem; }
@@ -62,15 +60,33 @@
             border-radius: 12px; font-weight: bold; cursor: pointer; width: 100%;
         }
 
-        /* GRÁFICAS DE RENDIMIENTO */
+        /* PASARELA MODAL PAYRAM */
+        .modal-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8); backdrop-filter: blur(10px);
+            justify-content: center; align-items: center; z-index: 1000; padding: 20px; box-sizing: border-box;
+        }
+        .modal-content {
+            background: #161a1d; border: 1px solid var(--glass-border); border-radius: 24px;
+            padding: 20px; width: 100%; max-width: 340px; text-align: center; box-shadow: var(--glow);
+        }
+        .qr-mock {
+            background: white; width: 160px; height: 160px; margin: 15px auto;
+            border-radius: 12px; display: flex; justify-content: center; align-items: center; padding: 10px; box-sizing: border-box;
+        }
+        .qr-mock img { width: 100%; height: 100%; }
+        .timer { font-family: monospace; color: #ff8a80; font-size: 1.1rem; margin: 10px 0; }
+        .btn-close { background: rgba(255,255,255,0.05); color: #b0a89f; border: 1px solid var(--glass-border); padding: 8px 16px; border-radius: 12px; cursor: pointer; font-size: 0.85rem; margin-top: 10px; }
+
+        /* GRÁFICAS */
         .metrics-box { background: rgba(0,0,0,0.2); border-radius: 16px; padding: 12px; margin: 15px 0; text-align: left; border: 1px solid rgba(255,255,255,0.05); }
         .metric-title { font-size: 0.75rem; color: #b0a89f; font-family: monospace; text-transform: uppercase; }
         .bar-container { background: rgba(255,255,255,0.05); height: 6px; border-radius: 3px; margin: 6px 0 12px 0; overflow: hidden; }
         .bar-fill { height: 100%; background: linear-gradient(90deg, #c5a073, #64b5f6); width: 0%; transition: width 1s ease-in-out; }
 
-        /* INTERFAZ DE CHAT */
+        /* CHAT */
         .chat-container { background: rgba(13, 16, 19, 0.6); border: 1px solid var(--glass-border); border-radius: 18px; width: 100%; max-width: 360px; padding: 12px; box-sizing: border-box; margin-bottom: 15px; }
-        .chat-box { height: 90px; overflow-y: auto; font-size: 0.85rem; text-align: left; padding-right: 5px; }
+        .chat-box { height: 90px; overflow-y: auto; font-size: 0.85rem; text-align: left; }
         .msg { margin-bottom: 8px; line-height: 1.4; }
         .msg.user { color: #e0d5c1; text-align: right; }
         .msg.octomus { color: #64b5f6; font-family: monospace; }
@@ -78,20 +94,17 @@
         .chat-input { flex: 1; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 20px; padding: 8px 15px; color: white; font-size: 0.85rem; outline: none; }
         .chat-btn { background: #c5a073; border: none; color: #141110; padding: 0 15px; border-radius: 20px; font-weight: bold; cursor: pointer; }
 
-        /* PILAR 6: BADGES Y ACCESO WHATSAPP */
+        /* BADGES */
         .floating-badges { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; max-width: 360px; margin-bottom: 15px; }
-        .badge {
-            background: var(--glass-bg); border: 1px solid var(--glass-border);
-            padding: 12px; border-radius: 16px; font-size: 0.85rem; text-align: center; color: #e0d5c1;
-            cursor: pointer; transition: transform 0.2s;
-        }
-        .badge.full-width { background: rgba(37, 211, 102, 0.12); border-color: #25d366; color: #25d366; font-weight: bold; grid-column: span 2; }
+        .badge { background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 12px; border-radius: 16px; font-size: 0.85rem; text-align: center; color: #e0d5c1; cursor: pointer; }
+        .badge.full-width { grid-column: span 2; background: rgba(37, 211, 102, 0.15); border-color: #25d366; color: #25d366; font-weight: bold; }
 
-        /* CONSOLA DE LOGS */
+        /* CONSOLA */
         .terminal-container { width: 100%; max-width: 360px; margin-top: auto; margin-bottom: 20px; }
         .terminal-title { text-align: center; color: #c5a073; font-family: monospace; font-size: 0.8rem; letter-spacing: 3px; margin-bottom: 6px; }
         .terminal { background: rgba(13, 16, 19, 0.95); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 14px; font-family: monospace; color: #64b5f6; font-size: 0.8rem; line-height: 1.5; min-height: 80px; text-align: left; overflow-y: auto; max-height: 120px; }
         .terminal .green { color: #81c784; }
+        .terminal .yellow { color: #ffd54f; }
     </style>
 </head>
 <body>
@@ -107,7 +120,6 @@
 
     <div class="glass-panel">
         <h2 style="font-weight:400; font-size:1.4rem; margin:0 0 5px 0;">Consola de Rendimiento</h2>
-        
         <div class="metrics-box">
             <div style="display:flex; justify-content:space-between;"><span class="metric-title">Carga de Nodos</span><span class="metric-title" id="valNodos" style="color:#64b5f6;">0%</span></div>
             <div class="bar-container"><div class="bar-fill" id="barNodos"></div></div>
@@ -120,14 +132,27 @@
                 <div class="product-title">Sudadera [Nodo Tánger]</div>
                 <div class="product-desc">Diseño exclusivo AI Wear. Algodón orgánico con encriptación visual SVG.</div>
                 <div class="product-price">35.00 PAYRAM</div>
-                <button class="btn-pay" onclick="initiatePayment('Sudadera Nodo Tánger')">Procesar con PayRam >_</button>
+                <button class="btn-pay" onclick="initiatePayment('Sudadera Nodo Tánger', 35.00)">Procesar con PayRam >_</button>
             </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="payModal">
+        <div class="modal-content">
+            <h3 style="margin:0 0 10px 0; color:#e0d5c1;">Pasarela PayRam v2.1</h3>
+            <p style="font-size:0.85rem; color:#b0a89f; margin:0;" id="modalItem">Esperando depósito...</p>
+            <div class="qr-mock">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=bitcoin:1PayRamSOVEREIGN8888Tanger" alt="QR de Pago">
+            </div>
+            <div class="timer" id="payTimer">15:00</div>
+            <p style="font-size:0.75rem; color:#81c784; font-family:monospace; margin:5px 0;">Dirección validada vía Tor Network</p>
+            <button class="btn-close" onclick="closeModal()">Cancelar Orden</button>
         </div>
     </div>
 
     <div class="chat-container">
         <div class="chat-box" id="chatBox">
-            <div class="msg octomus">>_ [octomus_v10]: Arquitectura alineada. Escribe "catálogo" para desplegar la sección comercial.</div>
+            <div class="msg octomus">>_ [octomus_v10]: Escribe "catálogo" para desplegar la tienda AI Wear.</div>
         </div>
         <div class="chat-input-group">
             <input type="text" id="chatInput" class="chat-input" placeholder="Mensaje a la IA..." onkeypress="checkEnter(event)">
@@ -136,9 +161,9 @@
     </div>
 
     <div class="floating-badges">
-        <div class="badge" onclick="logTerminal('24 pasarelas verificadas en África.', 'success')">🌍 Nodos Activos</div>
-        <div class="badge" onclick="logTerminal('Filtro Misericord_iA operando en el núcleo.', 'success')">✅ Filtro Ético</div>
-        <div class="badge full-width" onclick="window.location.href='https://wa.me/212773864709'">💬 Canal Premium WhatsApp</div>
+        <div class="badge" onclick="logTerminal('Nodos verificados.', 'success')">🌍 Nodos Activos</div>
+        <div class="badge" onclick="logTerminal('Filtro ético operando.', 'success')">✅ Filtro Ético</div>
+        <div class="badge full-width" onclick="window.location.href='https://wa.me/212773864709'">💬 Contactar por WhatsApp</div>
     </div>
 
     <div class="terminal-container">
@@ -151,10 +176,12 @@
     <script>
         const consoleEl = document.getElementById('termConsole');
         const chatBox = document.getElementById('chatBox');
+        let timerInterval;
 
         function logTerminal(text, type = 'info') {
             let colorClass = 'white';
             if (type === 'success') colorClass = 'green';
+            if (type === 'warn') colorClass = 'yellow';
             consoleEl.innerHTML += `<br>>_ <span class="${colorClass}">${text}</span>`;
             consoleEl.scrollTop = consoleEl.scrollHeight;
         }
@@ -171,13 +198,38 @@
             }, 30);
         }
 
-        function showShop() {
-            document.getElementById('shopContainer').style.display = 'block';
-            logTerminal("Módulo comercial AI Wear desplegado.", 'success');
+        function showShop() { document.getElementById('shopContainer').style.display = 'block'; }
+
+        /* PROTOCOLO DE PAGO */
+        function initiatePayment(item, price) {
+            logTerminal(`Conectando con nodo local PayRam...`, 'warn');
+            document.getElementById('modalItem').innerText = `${item} - ${price} PAYRAM`;
+            
+            setTimeout(() => {
+                document.getElementById('payModal').style.display = 'flex';
+                logTerminal(`Esperando firma TX en blockchain...`, 'info');
+                startTimer(900); // 15 minutos
+            }, 600);
         }
 
-        function initiatePayment(item) {
-            logTerminal(`Generando ticket PayRam para: [${item}]...`, 'info');
+        function startTimer(duration) {
+            clearInterval(timerInterval);
+            let timer = duration, minutes, seconds;
+            const display = document.getElementById('payTimer');
+            timerInterval = setInterval(() => {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+                display.innerText = minutes + ":" + seconds;
+                if (--timer < 0) clearInterval(timerInterval);
+            }, 1000);
+        }
+
+        function closeModal() {
+            document.getElementById('payModal').style.display = 'none';
+            clearInterval(timerInterval);
+            logTerminal("Orden cancelada por el usuario.", "warn");
         }
 
         function sendMessage() {
@@ -190,21 +242,19 @@
             chatBox.scrollTop = chatBox.scrollHeight;
 
             setTimeout(() => {
-                let reply = "Procesando petición...";
+                let reply = "Procesando...";
                 let lowered = text.toLowerCase();
-                
                 if(lowered.includes('comprar') || lowered.includes('ropa') || lowered.includes('catalogo') || lowered.includes('catálogo')) {
-                    reply = "Desplegando catálogo comercial AI Wear.";
+                    reply = "Catálogo AI Wear activado. Échale un ojo arriba.";
                     showShop();
                 } else if(lowered.includes('hola') || lowered.includes('salam')) {
-                    reply = "Salam. Servidor listo en Tánger.";
+                    reply = "Salam. Núcleo Octomus v10 listo.";
                 } else {
-                    reply = "Comando no reconocido. Escribe 'catálogo' para revelar la tienda.";
+                    reply = "Comando desconocido. Escribe 'catálogo'.";
                 }
-                
                 chatBox.innerHTML += `<div class="msg octomus">>_ octomus: ${reply}</div>`;
                 chatBox.scrollTop = chatBox.scrollHeight;
-            }, 800);
+            }, 600);
         }
 
         function checkEnter(e) { if(e.key === 'Enter') sendMessage(); }
