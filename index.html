@@ -3,42 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soberanía Tecnológica</title>
+    <title>Google AI Studio | Tánger</title>
     <style>
-        :root { --bg: #f5f3ef; --accent: #c5a073; }
-        body { background: var(--bg); font-family: 'Inter', sans-serif; margin: 0; color: #333; }
-        .hero { padding: 60px 20px; text-align: center; }
-        .hero h1 { font-size: 2.5em; font-weight: 200; letter-spacing: -1px; margin-bottom: 10px; }
+        /* Estilos base Glassmorphism (capas flotantes) */
+        :root { --cream: #f4ece2; --marrone: #8d6e63; --white: rgba(255,255,255,0.7); }
+        body { background-color: #fdfaf6; font-family: 'Segoe UI', sans-serif; color: #4a4a4a; margin: 0; padding: 20px; overflow-x: hidden; }
         
-        /* El efecto "flotante" */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 30px;
-            border-radius: 24px;
-            margin: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-        }
+        /* Contenedor principal con fondo desenfocado (necesitaremos una imagen) */
+        .page-container { position: relative; width: 100%; min-height: 100vh; }
         
-        .btn-premium {
-            background: #222; color: #fff; padding: 18px 30px;
-            border-radius: 50px; text-decoration: none; display: inline-block;
-            transition: transform 0.3s;
-        }
-        .btn-premium:hover { transform: scale(1.05); }
+        /* Capa central 'Gemini Advanced' */
+        .central-node { background: var(--white); backdrop-filter: blur(10px); padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center; margin-top: 50px; border: 1px solid rgba(255,255,255,0.3); }
+        
+        /* El Terminal inferior (octomus@ia) */
+        .terminal-console { background: #1a1a1a; color: var(--cream); font-family: monospace; padding: 15px; border-radius: 10px; margin-top: 40px; border-left: 3px solid var(--marrone); }
     </style>
 </head>
 <body>
-    <div class="hero">
+    <div class="page-container">
         <h1>Google AI Studio</h1>
-        <p>Tu soberanía tecnológica, redefinida.</p>
-    </div>
-    
-    <div class="glass-card">
-        <h3>Gemini Advanced</h3>
-        <p>La inteligencia que se adapta a tu ritmo en Tánger.</p>
-        <a href="https://wa.me/212773864709" class="btn-premium">Comenzar experiencia</a>
+        <p>Soberanía Tecnológica Redefinida, desde Tánger 🌴</p>
+
+        <div class="central-node">
+            <h2>Gemini Advanced</h2>
+            <p>La inteligencia que se adapta a tu ritmo en Tánger.</p>
+            <button class="btn-premium">Comenzar experiencia</button>
+        </div>
+
+        <div class="terminal-console">
+            >_ octomus@ia: feedback_procesado (TGR)...<br>
+            'Soberanía' confirmada. .. [ 📡 ]<br>
+            >_ Bienvenido al núcleo.
+        </div>
     </div>
 </body>
 </html>
