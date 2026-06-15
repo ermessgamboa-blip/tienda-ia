@@ -37,13 +37,12 @@
             transition: all 0.3s ease;
         }
 
-        /* PANEL CENTRAL Y TIENDA (AI WEAR) */
+        /* PANEL CENTRAL Y TIENDA */
         .glass-panel {
             background: var(--glass-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border); border-radius: 28px;
             padding: 22px; width: 100%; max-width: 360px; text-align: center;
             box-shadow: var(--glow); box-sizing: border-box; margin-bottom: 15px;
-            transition: all 0.5s ease;
         }
         
         /* CATÁLOGO OCULTO AI WEAR */
@@ -61,11 +60,9 @@
         .btn-pay {
             background: #c5a073; color: #141110; border: none; padding: 10px;
             border-radius: 12px; font-weight: bold; cursor: pointer; width: 100%;
-            transition: background 0.2s;
         }
-        .btn-pay:hover { background: #e0d5c1; }
 
-        /* GRÁFICAS DE RED */
+        /* GRÁFICAS DE RENDIMIENTO */
         .metrics-box { background: rgba(0,0,0,0.2); border-radius: 16px; padding: 12px; margin: 15px 0; text-align: left; border: 1px solid rgba(255,255,255,0.05); }
         .metric-title { font-size: 0.75rem; color: #b0a89f; font-family: monospace; text-transform: uppercase; }
         .bar-container { background: rgba(255,255,255,0.05); height: 6px; border-radius: 3px; margin: 6px 0 12px 0; overflow: hidden; }
@@ -81,12 +78,20 @@
         .chat-input { flex: 1; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 20px; padding: 8px 15px; color: white; font-size: 0.85rem; outline: none; }
         .chat-btn { background: #c5a073; border: none; color: #141110; padding: 0 15px; border-radius: 20px; font-weight: bold; cursor: pointer; }
 
-        /* CONSOLA */
-        .terminal-container { width: 100%; max-width: 360px; margin-top: auto; }
+        /* PILAR 6: BADGES Y ACCESO WHATSAPP */
+        .floating-badges { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; max-width: 360px; margin-bottom: 15px; }
+        .badge {
+            background: var(--glass-bg); border: 1px solid var(--glass-border);
+            padding: 12px; border-radius: 16px; font-size: 0.85rem; text-align: center; color: #e0d5c1;
+            cursor: pointer; transition: transform 0.2s;
+        }
+        .badge.full-width { background: rgba(37, 211, 102, 0.12); border-color: #25d366; color: #25d366; font-weight: bold; grid-column: span 2; }
+
+        /* CONSOLA DE LOGS */
+        .terminal-container { width: 100%; max-width: 360px; margin-top: auto; margin-bottom: 20px; }
         .terminal-title { text-align: center; color: #c5a073; font-family: monospace; font-size: 0.8rem; letter-spacing: 3px; margin-bottom: 6px; }
         .terminal { background: rgba(13, 16, 19, 0.95); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 14px; font-family: monospace; color: #64b5f6; font-size: 0.8rem; line-height: 1.5; min-height: 80px; text-align: left; overflow-y: auto; max-height: 120px; }
         .terminal .green { color: #81c784; }
-        .terminal .white { color: #ffffff; }
     </style>
 </head>
 <body>
@@ -96,11 +101,15 @@
         <p>Soberanía Tecnológica Redefinida 🌴</p>
     </div>
 
+    <div class="search-container">
+        <input type="text" id="searchBar" class="search-bar" placeholder="Busca en el nodo soberano...">
+    </div>
+
     <div class="glass-panel">
         <h2 style="font-weight:400; font-size:1.4rem; margin:0 0 5px 0;">Consola de Rendimiento</h2>
         
         <div class="metrics-box">
-            <div style="display:flex; justify-content:space-between;"><span class="metric-title">Carga de Nodos (África)</span><span class="metric-title" id="valNodos" style="color:#64b5f6;">0%</span></div>
+            <div style="display:flex; justify-content:space-between;"><span class="metric-title">Carga de Nodos</span><span class="metric-title" id="valNodos" style="color:#64b5f6;">0%</span></div>
             <div class="bar-container"><div class="bar-fill" id="barNodos"></div></div>
             <div style="display:flex; justify-content:space-between;"><span class="metric-title">Integridad Ética</span><span class="metric-title" id="valEtica" style="color:#81c784;">0%</span></div>
             <div class="bar-container"><div class="bar-fill" id="barEtica"></div></div>
@@ -113,23 +122,23 @@
                 <div class="product-price">35.00 PAYRAM</div>
                 <button class="btn-pay" onclick="initiatePayment('Sudadera Nodo Tánger')">Procesar con PayRam >_</button>
             </div>
-            <div class="product-card">
-                <div class="product-title">Camiseta [Misericord_iA]</div>
-                <div class="product-desc">Edición Arquitectura de la Bondad. Código soberano impreso en la espalda.</div>
-                <div class="product-price">20.00 PAYRAM</div>
-                <button class="btn-pay" onclick="initiatePayment('Camiseta Misericord_iA')">Procesar con PayRam >_</button>
-            </div>
         </div>
     </div>
 
     <div class="chat-container">
         <div class="chat-box" id="chatBox">
-            <div class="msg octomus">>_ [octomus_v10]: Conexión establecida. Escribe "catálogo" o "comprar" para desplegar la tienda AI Wear.</div>
+            <div class="msg octomus">>_ [octomus_v10]: Arquitectura alineada. Escribe "catálogo" para desplegar la sección comercial.</div>
         </div>
         <div class="chat-input-group">
             <input type="text" id="chatInput" class="chat-input" placeholder="Mensaje a la IA..." onkeypress="checkEnter(event)">
             <button class="chat-btn" onclick="sendMessage()">></button>
         </div>
+    </div>
+
+    <div class="floating-badges">
+        <div class="badge" onclick="logTerminal('24 pasarelas verificadas en África.', 'success')">🌍 Nodos Activos</div>
+        <div class="badge" onclick="logTerminal('Filtro Misericord_iA operando en el núcleo.', 'success')">✅ Filtro Ético</div>
+        <div class="badge full-width" onclick="window.location.href='https://wa.me/212773864709'">💬 Canal Premium WhatsApp</div>
     </div>
 
     <div class="terminal-container">
@@ -169,9 +178,6 @@
 
         function initiatePayment(item) {
             logTerminal(`Generando ticket PayRam para: [${item}]...`, 'info');
-            setTimeout(() => {
-                logTerminal("Esperando confirmación en la pasarela de pago descentralizada.", 'success');
-            }, 1000);
         }
 
         function sendMessage() {
@@ -187,13 +193,13 @@
                 let reply = "Procesando petición...";
                 let lowered = text.toLowerCase();
                 
-                if(lowered.includes('comprar') || lowered.includes('ropa') || lowered.includes('catalogo') || lowered.includes('catálogo') || lowered.includes('ai wear')) {
-                    reply = "Desplegando catálogo comercial AI Wear. Conexión PayRam preparada.";
+                if(lowered.includes('comprar') || lowered.includes('ropa') || lowered.includes('catalogo') || lowered.includes('catálogo')) {
+                    reply = "Desplegando catálogo comercial AI Wear.";
                     showShop();
                 } else if(lowered.includes('hola') || lowered.includes('salam')) {
                     reply = "Salam. Servidor listo en Tánger.";
                 } else {
-                    reply = "Comando no reconocido. Prueba a escribir 'catálogo' para ver la tienda.";
+                    reply = "Comando no reconocido. Escribe 'catálogo' para revelar la tienda.";
                 }
                 
                 chatBox.innerHTML += `<div class="msg octomus">>_ octomus: ${reply}</div>`;
