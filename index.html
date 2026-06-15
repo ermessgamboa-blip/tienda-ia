@@ -3,25 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soberanía Tecnológica | Tánger</title>
+    <title>Soberanía Tecnológica</title>
     <style>
-        body { background-color: #fdfaf6; font-family: 'Segoe UI', sans-serif; color: #4a4a4a; margin: 0; padding: 20px; }
-        .hero { text-align: center; padding: 20px; border-bottom: 2px solid #d2b48c; }
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
-        .card { background: #ffffff; padding: 15px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: center; }
-        .card img { width: 100%; border-radius: 8px; }
-        .btn-wa { display: block; margin-top: 20px; padding: 15px; background: #25d366; color: white; text-decoration: none; border-radius: 10px; font-weight: bold; }
+        :root { --bg: #f5f3ef; --accent: #c5a073; }
+        body { background: var(--bg); font-family: 'Inter', sans-serif; margin: 0; color: #333; }
+        .hero { padding: 60px 20px; text-align: center; }
+        .hero h1 { font-size: 2.5em; font-weight: 200; letter-spacing: -1px; margin-bottom: 10px; }
+        
+        /* El efecto "flotante" */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 30px;
+            border-radius: 24px;
+            margin: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+        
+        .btn-premium {
+            background: #222; color: #fff; padding: 18px 30px;
+            border-radius: 50px; text-decoration: none; display: inline-block;
+            transition: transform 0.3s;
+        }
+        .btn-premium:hover { transform: scale(1.05); }
     </style>
 </head>
 <body>
     <div class="hero">
         <h1>Google AI Studio</h1>
-        <p>Soberanía tecnológica en Tánger 🌴</p>
+        <p>Tu soberanía tecnológica, redefinida.</p>
     </div>
-    <div class="grid">
-        <div class="card"><h3>Gemini Tee</h3><p>350 MAD</p></div>
-        <div class="card"><h3>Hoodie AI</h3><p>350 MAD</p></div>
+    
+    <div class="glass-card">
+        <h3>Gemini Advanced</h3>
+        <p>La inteligencia que se adapta a tu ritmo en Tánger.</p>
+        <a href="https://wa.me/212773864709" class="btn-premium">Comenzar experiencia</a>
     </div>
-    <a href="https://wa.me/212773864709" class="btn-wa">Contactar Soporte (WhatsApp)</a>
 </body>
 </html>
